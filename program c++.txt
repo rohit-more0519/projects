@@ -1,0 +1,90 @@
+#include <iostream>
+#include<conio.h>
+#include <string.h>
+using namespace std;
+
+class emp
+{
+  private:
+  char name[20],post[20];
+  int salary;
+  public:
+  static int m_sum, s_sum, w_sum;
+  
+  void get_data()
+  {
+    cout<<"\n enter name,post,salary of employee=";
+    cin>>name;
+    cin>>post;
+    cin>>salary;
+  }
+  void add_salary()
+  {
+    int x;
+    x=strcmp(post,"manager");
+    if(x==0)
+    m_sum= m_sum +  salary;
+    
+    x=strcmp(post,"supervisor");
+    if(x==0)
+    s_sum= s_sum +  salary;
+    
+    x=strcmp(post,"worker");
+    if(x==0)
+    w_sum= w_sum +  salary;
+    
+  }
+  void display_data()
+  {
+    cout<<"\n"<<name<<post<<salary;
+  }
+};
+int emp::m_sum;
+int emp::s_sum;
+int emp::w_sum;
+
+void main()
+{
+  emp e[10];
+  int n,i,temp;
+  cout<<"\n enter total no of employees=";
+  cin>>n;
+  for(i=0;i<n;i++)
+  {
+    e[i].get_data();
+    e[i].add_salary();
+  }
+  cout<<"\n name post salary";
+  for(i=0;i<n;i++)
+  {
+    e[i].display_data();
+  }
+  cout<<"\n total salary of all managers="<<emp::m_sum;
+   cout<<"\n total salary of all supervisor="<<emp::s_sum;
+    cout<<"\n total salary of all workers="<<emp::w_sum;
+    temp=emp::m_sum + emp::s_sum +emp::w_sum;
+    cout<<"\n total salary of all employees in the compony=";
+    cout<<temp;
+    getch();
+    }
+
+*with conio=
+Output:
+
+Main.cpp:2:9: fatal error: conio.h: No such file or directory
+    2 | #include<conio.h>
+      |         ^~~~~~~~~
+compilation terminated.
+
+
+*without conio=
+Output:
+
+Main.cpp:45:1: error: ‘::main’ must return ‘int’
+   45 | void main()
+      | ^~~~
+Main.cpp: In function ‘int main()’:
+Main.cpp:67:5: error: ‘getch’ was not declared in this scope; did you mean ‘getc’?
+   67 |     getch();
+      |     ^~~~~
+      |     getc
